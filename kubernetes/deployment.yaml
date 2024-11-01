@@ -1,0 +1,24 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: dock123-deployment
+  labels:
+    app: dock123
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: dock123
+  template:
+    metadata:
+      labels:
+        app: dock123
+    spec:
+      containers:
+      - name: dock123-container
+        image: renuka0912/dock123:latest # Replace with your image name and tag
+        ports:
+        - containerPort: 3000
+        envFrom:
+        - configMapRef:
+            name: dock123-config
